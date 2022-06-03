@@ -27,9 +27,21 @@ complaints = [
 
 
 def home(req):
-   
-    return render(req, 'villageapp/index.html',{'complaints':complaints})
+
+    return render(req, 'villageapp/index.html', {'complaints': complaints})
 
 
 def about(req):
     return render(req, 'villageapp/about.html')
+
+
+def notification(req):
+    return render(req, 'villageapp/notification.html')
+
+
+def jobs(req):
+    return render(req, 'villageapp/jobs.html')
+
+
+def complaints(req):
+    return render(req, 'villageapp/complaints.html')
