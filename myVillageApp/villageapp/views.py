@@ -1,29 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
-complaints = [
-
-    {
-        'author': 'XYZ',
-        'title': 'ABc Cde',
-        'Desc': 'sghsgd  fjshfj  sjfhdkjs  shfkjs ',
-        'date-posted': 'hjsdkjfh  shfkf'
-
-    },
-    {
-        'author': 'XYZ',
-        'title': 'ABc Cde',
-        'Desc': 'sghsgd  fjshfj  sjfhdkjs  shfkjs ',
-        'date-posted': 'hjsdkjfh  shfkf'
-
-    },
-    {
-        'author': 'XYZ',
-        'title': 'ABc Cde',
-        'Desc': 'sghsgd  fjshfj  sjfhdkjs  shfkjs ',
-        'dateposted': 'hjsdkjfh  shfkf'
-    }
-]
+from villageapp.models import Notification
 
 
 def home(req):
@@ -36,7 +13,9 @@ def about(req):
 
 
 def notification(req):
-    return render(req, 'villageapp/notification.html')
+
+    data = Notification.objects.all()
+    return render(req, 'villageapp/notification.html', {'data': data})
 
 
 def jobs(req):

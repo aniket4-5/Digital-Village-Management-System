@@ -52,6 +52,11 @@
     <main role="main" class="container">
   <div class="row">
     <div class="col-md-8">
+      {% if messages %}
+         {% for mes in messages %}
+             <div class="alert alert-{{mes.tags}}">{{mes}}</div>
+         {% endfor %}
+      {% endif %}
       {% block content %}{% endblock %}
     </div>
     <div class="col-md-4">
@@ -62,8 +67,7 @@
             <li class="list-group-item list-group-item-light">Latest Jobs</li>
             <li class="list-group-item list-group-item-light">Latest Announcements</li>
             <li class="list-group-item list-group-item-light">Latest Complaints</li>
-            <li class="list-group-item list-group-item-light">Latest Activities</li>
-          </ul>
+     </ul>
         </p>
       </div>
     </div>
@@ -86,7 +90,7 @@
     
     
     {% endcomment %}
-    <div class='container'>
+    <div class'bg-primary'>
         <p class="text-center bg-dark text-white ">rajivnagrjhiri &copy; 2022</p>
     </div>
     {% comment %} JAVASCRIPT {% endcomment %}
