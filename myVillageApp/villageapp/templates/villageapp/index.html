@@ -1,0 +1,18 @@
+{% extends 'villageapp/base.html' %}
+{% block content%}
+{% if complaints %}
+<div class="row container">
+ {% for item in complaints %}
+ <div class="card col-6">
+    <div class="card-body">
+      <h4 class="card-title">{{item.title}}</h4>
+      <p class="card-text">{{item.Desc}}</p>
+      <p>{{item.author}}</p>
+      <p>{{item.dateposted}}</p>
+    </div>
+  </div>
+ {% endfor %}
+</div>
+{% endif %}
+
+{% endblock content%}
