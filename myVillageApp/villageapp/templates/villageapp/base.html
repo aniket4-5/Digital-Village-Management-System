@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
-
+    <script src="https://kit.fontawesome.com/6b052a4dad.js" crossorigin="anonymous"></script>
     {% comment %} CSS {% endcomment %}
     <link rel="stylesheet" href="{% static 'villageapp/main.css'%}">
     <title>Home
@@ -17,7 +17,8 @@
 <body>
      {% comment %} NAVIGATION BAR {% endcomment %}
      <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <div class="container">
             <a class="navbar-brand mr-4" href="{% url 'village-home' %}">Rajiv  Nagar Jhiri</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,8 +34,17 @@
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Login</a>
-                <a class="nav-item nav-link" href="#">Register</a>
+                {% if user.is_authenticated %}
+                
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-item nav-link" href="{%  url 'user-profile' %}">Profile</a>
+
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                {% endif %}
+               
+                
               </div>
             </div>
           </div>
@@ -42,36 +52,24 @@
       </header>
 
 
-{% block slider %}
-{%endblock slider%}
+
 
 
 
 
 {% comment %} Main block {% endcomment %}
-    <main role="main" class="container">
-  <div class="row">
-    <div class="col-md-8">
+<main role="main" class="container-fluid">
+  
+    <div>
       {% if messages %}
          {% for mes in messages %}
              <div class="alert alert-{{mes.tags}}">{{mes}}</div>
          {% endfor %}
       {% endif %}
-      {% block content %}{% endblock %}
+      
     </div>
-    <div class="col-md-4">
-      <div class="content-section">
-        <h3>Latest in Raijv Nagar Jhiri</h3>
-        <p class='text-muted'>
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-light">Latest Jobs</li>
-            <li class="list-group-item list-group-item-light">Latest Announcements</li>
-            <li class="list-group-item list-group-item-light">Latest Complaints</li>
-     </ul>
-        </p>
-      </div>
-    </div>
-  </div>
+    {% block content %}{% endblock %}
+  
 </main>
 
 
@@ -90,10 +88,88 @@
     
     
     {% endcomment %}
-    <div class'bg-primary'>
-        <p class="text-center bg-dark text-white ">rajivnagrjhiri &copy; 2022</p>
+    <!-- Footer -->
+<footer class="text-center text-lg-start bg-dark my-4 p-2 text-white">
+  <!-- Section: Social media -->
+  
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4 text-warning">
+            <i class="fas fa-gem me-3 text-warning"></i>Rajiv Nagar Jhiri
+          </h6>
+          <p>
+            Rajiv Nagar is a village from Hisar district of Haryana.As time is changing we are also trying to be computerized from the tedious and time - consuming paperwork
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase text-warning fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="{% url 'village-home' %}" class="text-reset">Home</a>
+          </p>
+          <p>
+            <a href="{% url 'village-notification' %}" class="text-reset">About</a>
+          </p>
+          <p>
+            <a href="{% url 'village-notification' %}" class="text-reset">Notifications</a>
+          </p>
+          <p>
+            <a href="{% url 'village-jobs' %}" class="text-reset">Jobs</a>
+          </p>
+          <p>
+            <a href="{% url 'village-complaints' %}" class="text-reset">Complaints</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4 text-warning">
+            Contact
+          </h6>
+          <p><i class="fas fa-home me-3"></i> Rajiv Nagar Jhiri ,Hisar, Haryana , 125001</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            rajivnagar@gmail.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
     </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">rajivnagarjhiri.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
     {% comment %} JAVASCRIPT {% endcomment %}
+    <script src="https://kit.fontawesome.com/6b052a4dad.js" crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
