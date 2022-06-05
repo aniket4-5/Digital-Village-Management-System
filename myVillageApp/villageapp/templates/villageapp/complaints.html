@@ -53,7 +53,9 @@ font-weight: 500;
       <a href="{% url 'solved_complaints' %}" class="btn btn-outline-primary col-2 mx-2">Solved Complaints </a>
       <a href="{% url 'unsolved_complaints' %}" class="btn btn-outline-primary col-2 mx-2">Pending Complaints </a>
      
-      <a href="{% url 'user_comp' user.username %}" class="btn btn-outline-primary col-2 mx-2">My Complaints </a>
+     {% if user.is_authenticated %}
+     <a href="{% url 'user_comp' user.username %}" class="btn btn-outline-primary col-2 mx-2">My Complaints </a>
+     {% endif %}
      
     </div>
 

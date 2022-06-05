@@ -1,0 +1,55 @@
+{% extends 'villageapp/base.html' %}
+{% load static %}
+{% block content%}
+<header class="container-fluid my-3 h3 text-center d-flex align-items-center justify-content-center">
+    <img src="{% static 'villageapp/images/logo.png' %}" style="width: 5rem; height: 5rem;" class="mx-5">
+    <p>Rajiv Nagar Jhir Job Portal</p>
+  </header>
+<div class="container my-5">
+   
+   
+  
+     <div class="row my-3">
+   
+
+       <div class ="card">
+       
+        <div class="card-body">
+          <h5 class="card-title text-center">Title : {{item.title}}</h5>
+          <p class="card-text"><b>Author </b>: {{item.author}}</p>
+          
+          <p class="card-text"><b>Description </b>: {{item.descritrion}}</p>
+          <p class="card-text"><b>Salary </b>: {{item.salary_desc}}</p>
+          <p class="card-text"><b>No. Opening  </b>: {{item.no_of_opening}}</p>
+          <p class="card-text"><b>Location  </b>: {{item.location}}</p>
+          <p class="card-text"><b>Contact Here  </b>: {{item.contact_details}}</p>
+          <p class="card-text"><b>Date Posted </b>: {{item.date_posted|date:"d - F - Y"}}</p>
+          {% if item.status  %}
+           
+          <p class="card-text"><b>Status </b>: <span class='btn btn-success'> Active </span></p>
+          {% else %}
+          <p class="card-text"><b>Status </b>: <span class='btn btn-warning'> Not Active now </span></p>
+          {% endif %}
+         
+         
+          
+         
+         <a href="{% url 'job_update' item.id %}" class="btn btn-outline-primary">Edit</a>
+         <a href="{% url 'job_delete' item.id %}" class="btn btn-outline-danger mx-3">Delete</a>
+
+         
+        <a href="#" class="btn btn-success mx-3">Listen</a>
+        </div>
+
+
+       </div>
+    
+      
+   
+     </div>
+
+  
+    
+</div>
+
+{% endblock content%}

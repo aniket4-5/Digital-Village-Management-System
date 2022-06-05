@@ -1,7 +1,7 @@
 from django.urls import path
 from villageapp import views
 
-from .views import NotificationDeleteView, NotificationListView, NotificationDetailView, NotificationCreateView, NotificationUpdateView, ComplaintsListView, ComplaintsDetailView, ComplaintsCreateView, ComplaintsUpdateView, ComplaintsDeleteView, SolvedComplaintsListView, UnSolvedComplaintsListView, UserComplaintsListView
+from .views import NotificationDeleteView, NotificationListView, NotificationDetailView, NotificationCreateView, NotificationUpdateView, ComplaintsListView, ComplaintsDetailView, ComplaintsCreateView, ComplaintsUpdateView, ComplaintsDeleteView, SolvedComplaintsListView, UnSolvedComplaintsListView, UserComplaintsListView, JobsListView, JobsDetailView, JobsCreateView, JobsUpdateView, JobsDeleteView, UserJobsListView
 
 
 urlpatterns = [
@@ -20,7 +20,22 @@ urlpatterns = [
          NotificationDeleteView.as_view(), name="notif_delete"),
 
 
-    path('jobs/', views.jobs, name="village-jobs"),
+    path('jobs/', JobsListView.as_view(), name="village-jobs"),
+    path('jobs/<int:pk>',
+         JobsDetailView.as_view(), name="job_detail"),
+
+    path('jobs/new/',
+         JobsCreateView.as_view(), name="job_new_add"),
+
+    path('jobs/<int:pk>/update',
+         JobsUpdateView.as_view(), name="job_update"),
+    path('jobs/<int:pk>/delete',
+         JobsDeleteView.as_view(), name="job_delete"),
+
+    path('job/user/<str:username>/',
+         UserJobsListView.as_view(), name="user_job"),
+
+
 
 
     path('complaints/', ComplaintsListView.as_view(),
