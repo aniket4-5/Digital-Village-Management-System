@@ -1,5 +1,132 @@
 {% extends 'villageapp/base.html' %}
+{% load static %}
 {% block content%}
-ABOUT
+<div class="my-4 p-3">
+    <h1 class="text-center  my-4 alert p-2 ">Rajiv Nagar Jhiri</h1>
+    
+    <div class="row my-4 p-3">
+        
+           <p class="col-5" style="font-size:1.5rem">
+  
+            Hello ! ... Ram Ram ... ! this is sarpanch of Rajiv Nagar Jhiri and Gram Panchyat
+                . We welcome you to official website of Rajiv Nagar Jhiri .Rajiv Nagar is a village from Hisar district
+                of Haryana. It is under administration of Gram Panchayat.Main occupation is agriculture.There is need
+                big development in Rajiv Nagar from road to electricity and education. As time is changing we are also
+                trying to be
+                computerized from the tedious and time - consuming paperwork. This website is the result of one of our
+                goals to improve our administration by shifting from paper to computer. It will not only reduce
+                corruption but make things faster which is a matter of big stress to our resident .
+                This website primarily focuses on announcements and complaints by our residents . They can do complains
+                online . Now they don't have to walk long 2 km just for filing a complaint . But we are also going to
+                add a picture gallery of our village. Also also share glorious history of our village . This will help
+                in attaracting tourists and people from outside will be more respectful to our village .
+           </p>
+           <img src="{% static 'villageapp/images/cr2.jpeg'%}" alt="" class="col-6 text-center offset-1" style="width:40rem; height:30rem">
+    </div>
+</div>
+   
 
+   {% comment %} testinomial  {% endcomment %}
+   <div class="my-5 p-3 text-warning  ">
+        <h4 class="my-3 p-1 text-center">What people think About Rajiv Nagar Jhiri .. ?</h4>
+        <!-- Carousel wrapper -->
+        <!-- Carousel wrapper -->
+<div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-mdb-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="rounded-circle shadow-1-strong mb-4"
+          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
+          style="width: 150px;" />
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h5 class="mb-3">Maria Kate</h5>
+            <p>Photographer</p>
+            <p class="text-muted">
+              <i class="fas fa-quote-left pe-2"></i>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+              nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
+              fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
+              doloremque.
+            </p>
+          </div>
+        </div>
+        <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="far fa-star fa-sm"></i></li>
+        </ul>
+      </div>
+      <div class="carousel-item">
+        <img class="rounded-circle shadow-1-strong mb-4"
+          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar"
+          style="width: 150px;" />
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h5 class="mb-3">John Doe</h5>
+            <p>Web Developer</p>
+            <p class="text-muted">
+              <i class="fas fa-quote-left pe-2"></i>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+              nesciunt sint eligendi reprehenderit reiciendis.
+            </p>
+          </div>
+        </div>
+        <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="far fa-star fa-sm"></i></li>
+        </ul>
+      </div>
+      <div class="carousel-item">
+        <img class="rounded-circle shadow-1-strong mb-4"
+          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="avatar" style="width: 150px;" />
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h5 class="mb-3">Anna Deynah</h5>
+            <p>UX Designer</p>
+            <p class="text-muted">
+              <i class="fas fa-quote-left pe-2"></i>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti
+              nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia
+              fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit
+              doloremque.
+            </p>
+          </div>
+        </div>
+        <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="fas fa-star fa-sm"></i></li>
+          <li><i class="far fa-star fa-sm"></i></li>
+        </ul>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls"
+      data-mdb-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls"
+      data-mdb-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- Carousel wrapper -->
+
+
+   
+
+        <!-- Carousel wrapper -->
+
+
+  <div class="my-3 p-3">
+    <a href="#" class="btn btn-success">Add Your Review !</a>
+   </div>
+  
 {% endblock content%}

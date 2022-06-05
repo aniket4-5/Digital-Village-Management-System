@@ -1,15 +1,17 @@
-from gc import get_objects
-from django.shortcuts import render
+
+from django.shortcuts import render, get_object_or_404
 from villageapp.models import Notification, Complaints
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
+from django.contrib.auth.models import User
+
 
 def home(req):
 
-    return render(req, 'villageapp/index.html', {'complaints': complaints})
+    return render(req, 'villageapp/index.html')
 
 ### HANDLING NOTIFICATION PART ######
 
@@ -19,6 +21,7 @@ class NotificationListView(ListView):
     template_name = 'villageapp/notification.html'
     context_object_name = 'data'
     ordering = ['-date_posted']
+    paginate_by = 7
 
 
 class NotificationDetailView(DetailView):
@@ -73,6 +76,7 @@ class ComplaintsListView(ListView):
     template_name = 'villageapp/complaints.html'
     context_object_name = 'data'
     ordering = ['-date_posted']
+    paginate_by = 7
 
 
 class SolvedComplaintsListView(ListView):
@@ -80,6 +84,7 @@ class SolvedComplaintsListView(ListView):
     template_name = 'villageapp/solved_complaints.html'
     context_object_name = 'data'
     ordering = ['-date_posted']
+    # paginate_by = 1
 
 
 class UnSolvedComplaintsListView(ListView):
@@ -87,6 +92,19 @@ class UnSolvedComplaintsListView(ListView):
     template_name = 'villageapp/unsolved_complaints.html'
     context_object_name = 'data'
     ordering = ['-date_posted']
+
+    # paginate_by = 1
+
+
+class UserComplaintsListView(ListView):
+    model = Complaints
+    template_name = 'villageapp/user_complaints.html'
+    context_object_name = 'data'
+    ordering = ['-date_posted']
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Complaints.objects.filter(author=user).order_by('-date_posted')
 
 
 class ComplaintsDetailView(DetailView):

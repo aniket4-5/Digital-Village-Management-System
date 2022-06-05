@@ -1,7 +1,7 @@
 from django.urls import path
 from villageapp import views
 
-from .views import NotificationDeleteView, NotificationListView, NotificationDetailView, NotificationCreateView, NotificationUpdateView, ComplaintsListView, ComplaintsDetailView, ComplaintsCreateView, ComplaintsUpdateView, ComplaintsDeleteView, SolvedComplaintsListView, UnSolvedComplaintsListView
+from .views import NotificationDeleteView, NotificationListView, NotificationDetailView, NotificationCreateView, NotificationUpdateView, ComplaintsListView, ComplaintsDetailView, ComplaintsCreateView, ComplaintsUpdateView, ComplaintsDeleteView, SolvedComplaintsListView, UnSolvedComplaintsListView, UserComplaintsListView
 
 
 urlpatterns = [
@@ -38,6 +38,10 @@ urlpatterns = [
          ComplaintsUpdateView.as_view(), name="comp_update"),
     path('complaints/<int:pk>/delete',
          ComplaintsDeleteView.as_view(), name="comp_delete"),
+    path('complaints/user/<str:username>/',
+         UserComplaintsListView.as_view(), name="user_comp"),
+
+
 
 
 ]

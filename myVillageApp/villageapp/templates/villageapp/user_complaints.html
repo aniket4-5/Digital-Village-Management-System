@@ -49,16 +49,18 @@ font-weight: 500;
     <div class="row my-5 bg-light p-3">
       <a href="{% url 'comp_new_add' %}" class="btn btn-outline-primary col-2 mx-2">Register a Complaint </a>
     
-      <a href="{% url 'village-complaints' %}" class="btn btn-primary col-2 mx-2">All Complaints </a>
+      <a href="{% url 'village-complaints' %}" class="btn btn-outline-primary col-2 mx-2">All Complaints </a>
       <a href="{% url 'solved_complaints' %}" class="btn btn-outline-primary col-2 mx-2">Solved Complaints </a>
       <a href="{% url 'unsolved_complaints' %}" class="btn btn-outline-primary col-2 mx-2">Pending Complaints </a>
-     
-      <a href="{% url 'user_comp' user.username %}" class="btn btn-outline-primary col-2 mx-2">My Complaints </a>
-     
+
+      <a href="{% url 'user_comp' user.username %}" class="btn btn-primary col-2 mx-2">My Complaints </a>
+      
     </div>
+    
 
   
     {% if data %}
+    <h6 class="my-3 text-success">Posted by : {{view.kwargs.username}} </h6>
   
     <table class="table">
       <thead class="bg-dark text-warning">

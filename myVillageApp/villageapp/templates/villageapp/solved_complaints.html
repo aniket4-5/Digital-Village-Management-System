@@ -46,7 +46,7 @@
 
 
 
-  <div>
+  <div class="my-2 p-4">
     <h1 class="text-center text-primary text-uppercase">Complaints</h1>
 
    
@@ -56,20 +56,21 @@
       <a href="{% url 'village-complaints' %}" class="btn btn-outline-primary col-2 mx-2">All Complaints </a>
       <a href="{% url 'solved_complaints' %}" class="btn btn-primary col-2 mx-2">Solved Complaints </a>
       <a href="{% url 'unsolved_complaints' %}" class="btn btn-outline-primary col-2 mx-2">Pending Complaints </a>
+      <a href="{% url 'user_comp' user.username %}" class="btn btn-outline-primary col-2 mx-2">My Complaints </a>
     </div>
 
   
     {% if data %}
     <table class="table">
-        <thead>
+        <thead class="bg-dark text-warning">
           <tr>
             <th scope="col">Sr. no.</th>
             <th scope="col">Title</th>
             <th scope="col">Registered by</th>
             <th scope="col">Category</th>
-            <th scope="col">Date Posted</th>
+            <th scope="col">Date/Time Posted</th>
             <th scope="col">Status</th>
-            <th scope="col"></th>
+            <th scope="col">More</th>
           </tr>
         </thead>
         <tbody>
@@ -107,5 +108,25 @@
     {% endif%}
 
 </div>
+{% if is_paginated %}
 
+{% if page_obj.has_previous %}
+  <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+  <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+{% endif %}
+
+{% for num in page_obj.paginator.page_range %}
+  {% if page_obj.number == num %}
+    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+  {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+  {% endif %}
+{% endfor %}
+
+{% if page_obj.has_next %}
+  <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+  <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+{% endif %}
+
+{% endif %}
 {% endblock content%}
