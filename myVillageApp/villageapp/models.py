@@ -28,8 +28,7 @@ class Complaints(models.Model):
     category = models.CharField(max_length=100)
 
     descritrion = models.TextField()
-    image = models.ImageField(default='default.jpg',
-                              upload_to='complaints_pics')
+    image = models.ImageField(upload_to='complaints_pics')
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
