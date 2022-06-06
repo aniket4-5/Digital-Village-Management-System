@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from django.contrib.auth.models import User
 
+from .form import AddNotification, AddComplaints, AddJob
+
 
 def home(req):
 
@@ -32,7 +34,8 @@ class NotificationDetailView(DetailView):
 
 class NotificationCreateView(LoginRequiredMixin, CreateView):
     model = Notification
-    fields = ['title', 'content']
+    #fields = ['title', 'content']
+    form_class = AddNotification
     template_name = 'villageapp/add_new_notify.html'
 
     def form_valid(self, form):
@@ -42,7 +45,8 @@ class NotificationCreateView(LoginRequiredMixin, CreateView):
 
 class NotificationUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Notification
-    fields = ['title', 'content']
+    # fields = ['title', 'content']
+    form_class = AddNotification
     template_name = 'villageapp/add_new_notify.html'
 
     def form_valid(self, form):
@@ -116,7 +120,8 @@ class ComplaintsDetailView(DetailView):
 
 class ComplaintsCreateView(LoginRequiredMixin, CreateView):
     model = Complaints
-    fields = ['title', 'category', 'descritrion', 'image']
+    #fields = ['title', 'category', 'descritrion', 'image']
+    form_class = AddComplaints
     template_name = 'villageapp/add_new_comp.html'
 
     def form_valid(self, form):
@@ -126,7 +131,8 @@ class ComplaintsCreateView(LoginRequiredMixin, CreateView):
 
 class ComplaintsUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Complaints
-    fields = ['title', 'category', 'descritrion', 'image']
+    # fields = ['title', 'category', 'descritrion', 'image']
+    form_class = AddComplaints
     template_name = 'villageapp/add_new_comp.html'
 
     def form_valid(self, form):
@@ -176,8 +182,8 @@ class JobsDetailView(DetailView):
 
 class JobsCreateView(LoginRequiredMixin, CreateView):
     model = Jobs
-    fields = ['title', 'descritrion', 'no_of_opening',
-              'salary_desc', 'location', 'contact_details', 'status']
+    # fields = ['title', 'descritrion', 'no_of_opening',  'salary_desc', 'location', 'contact_details', 'status']
+    form_class = AddJob
     template_name = 'villageapp/add_new_job.html'
 
     def form_valid(self, form):
@@ -190,8 +196,9 @@ class JobsCreateView(LoginRequiredMixin, CreateView):
 
 class JobsUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Jobs
-    fields = ['title', 'descritrion', 'no_of_opening',
-              'salary_desc', 'location', 'contact_details', 'status']
+    # fields = ['title', 'descritrion', 'no_of_opening',
+    #           'salary_desc', 'location', 'contact_details', 'status']
+    form_class = AddJob
     template_name = 'villageapp/add_new_job.html'
 
     def form_valid(self, form):
