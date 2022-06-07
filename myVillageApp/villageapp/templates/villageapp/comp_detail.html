@@ -1,16 +1,16 @@
 {% extends 'villageapp/base.html' %}
 {% block content%}
-<div>
+<div class="container-fluid  m-1 p-2 d-flex align-items-center justify-content-center">
    
    
   
-     <div class="row my-3">
+     
    
 
-       <div class ="card">
+       <div class ="card" style="width:80%;">
        
         <div class="card-body">
-          <h5 class="card-title text-center">Title : {{item.title}}</h5>
+          <h5 class="card-title text-center alert alert-info">{{item.title}}</h5>
           <p class="card-text"><b>Author </b>: {{item.author}}</p>
           <p class="card-text"><b>Category </b>: {{item.category}}</p>
           <p class="card-text"><b>Date Posted </b>: {{item.date_posted|date:"d - F - Y"}}</p>
@@ -27,11 +27,17 @@
          </div>
           
          
-         <a href="{% url 'comp_update' item.id %}" class="btn btn-outline-primary">Edit</a>
-         <a href="{% url 'comp_delete' item.id %}" class="btn btn-outline-danger mx-3">Delete</a>
+         <div class="my-4 p-2">
+           <fieldset>
+             <legend class="text-info border-bottom p-2">Actions: </legend>
+             <a href="{% url 'comp_update' item.id %}" class="btn btn-outline-primary">Edit</a>
+          <a href="{% url 'comp_delete' item.id %}" class="btn btn-outline-danger mx-3">Delete</a>
+           </fieldset>
+          
+         </div>
 
          
-        <a href="#" class="btn btn-success mx-3">Listen</a>
+        {% comment %} <a href="#" class="btn btn-success mx-3">Listen</a> {% endcomment %}
         </div>
 
 
@@ -39,7 +45,7 @@
     
       
    
-     </div>
+     
 
   
     

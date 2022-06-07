@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, get_object_or_404
-from villageapp.models import Notification, Complaints, Jobs
+from villageapp.models import Notification, Complaints, Jobs, Review
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -12,8 +12,8 @@ from .form import AddNotification, AddComplaints, AddJob
 
 
 def home(req):
-
-    return render(req, 'villageapp/index.html')
+    data = Review.objects.all()
+    return render(req, 'villageapp/index.html', {'data': data})
 
 ### HANDLING NOTIFICATION PART ######
 
@@ -22,7 +22,7 @@ class NotificationListView(ListView):
     model = Notification
     template_name = 'villageapp/notification.html'
     context_object_name = 'data'
-    ordering = ['-date_posted']
+    ordering = ['date_posted']
     paginate_by = 5
 
 
@@ -79,7 +79,7 @@ class ComplaintsListView(ListView):
     model = Complaints
     template_name = 'villageapp/complaints.html'
     context_object_name = 'data'
-    ordering = ['-date_posted']
+    ordering = ['date_posted']
     paginate_by = 5
 
 
@@ -87,7 +87,7 @@ class SolvedComplaintsListView(ListView):
     model = Complaints
     template_name = 'villageapp/solved_complaints.html'
     context_object_name = 'data'
-    ordering = ['-date_posted']
+    ordering = ['date_posted']
     # paginate_by = 1
 
 
@@ -95,7 +95,7 @@ class UnSolvedComplaintsListView(ListView):
     model = Complaints
     template_name = 'villageapp/unsolved_complaints.html'
     context_object_name = 'data'
-    ordering = ['-date_posted']
+    ordering = ['date_posted']
 
     # paginate_by = 1
 
@@ -104,7 +104,7 @@ class UserComplaintsListView(ListView):
     model = Complaints
     template_name = 'villageapp/user_complaints.html'
     context_object_name = 'data'
-    ordering = ['-date_posted']
+    ordering = ['date_posted']
     paginate_by = 5
 
     def get_queryset(self):
@@ -237,6 +237,20 @@ class UserJobsListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Jobs.objects.filter(author=user).order_by('-date_posted')
+
+
+# Reviews Functionality
+
+
+# 1. Show Review
+# class ReviewListView(ListView):
+#     model = Review
+#     template_name = 'villageapp/base.html'
+#     context_object_name = 'data'
+#     ordering = ['-date_posted']
+#     paginate_by = 5
+
+#################################
 
 
 def about(req):

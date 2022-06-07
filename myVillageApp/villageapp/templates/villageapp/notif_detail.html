@@ -1,30 +1,37 @@
 {% extends 'villageapp/base.html' %}
 {% block content%}
-<div>
+<div class="container my-5 p-3">
    
    
   
-     <div class="row my-3">
+    
    
 
        <div class ="card">
        
         <div class="card-body">
-          <h5 class="card-title">Title : {{item.title}}</h5>
+          <h5 class="card-title text-center alert alert-info">  {{item.title}}</h5>
           
           <p class="card-text"><b>Date Posted </b>: {{item.date_posted|date:"d - F - Y"}}</p>
           <p class="card-text"><b>Description </b>: {{item.content}}</p>
           
          {% if user.is_superuser %}
-         <a href="{% url 'notif_update' item.id %}" class="btn btn-outline-primary">Edit-Notification</a>
-         <a href="{% url 'notif_delete' item.id %}" class="btn btn-outline-danger mx-3">Delete</a>
-
+         <div class="my-4 p-2">
+          <fieldset>
+            <legend class="text-muted border-bottom p-2">Actions: </legend>
+            <a href="{% url 'notif_update' item.id %}" class="btn btn-outline-primary">Edit-Notification</a>
+            <a href="{% url 'notif_delete' item.id %}" class="btn btn-outline-danger mx-3">Delete</a>
+   
+          </fieldset>
+         
+        </div>
+        
          {% endif %}
-         <a href="#" class="btn btn-success mx-3">Listen</a>
+         {% comment %} <a href="#" class="btn btn-success mx-3">Listen</a> {% endcomment %}
         </div>
 
 
-       </div>
+      
     
       
    

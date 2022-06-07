@@ -3,19 +3,19 @@
 {% block content%}
 <header class="container-fluid my-3 h3 text-center d-flex align-items-center justify-content-center">
     <img src="{% static 'villageapp/images/logo.png' %}" style="width: 5rem; height: 5rem;" class="mx-5">
-    <p>Rajiv Nagar Jhir Job Portal</p>
+    <p>Rajiv Nagar Jhiri Job Portal</p>
   </header>
 <div class="container my-5">
    
    
   
-     <div class="row my-3">
+     <div class="row my-3" style="font-size:1.2rem;">
    
 
        <div class ="card">
        
         <div class="card-body">
-          <h5 class="card-title text-center">Title : {{item.title}}</h5>
+          <h4 class="card-title text-center alert alert-info"> {{item.title}}</h4>
           <p class="card-text"><b>Author </b>: {{item.author}}</p>
           
           <p class="card-text"><b>Description </b>: {{item.descritrion}}</p>
@@ -31,14 +31,20 @@
           <p class="card-text"><b>Status </b>: <span class='btn btn-warning'> Not Active now </span></p>
           {% endif %}
          
-         
+          <div class="my-4 p-2">
+            <fieldset>
+              <legend class="text-muted border-bottom p-2">Actions: </legend>
+              <a href="{% url 'job_update' item.id %}" class="btn btn-outline-primary">Edit</a>
+              <a href="{% url 'job_delete' item.id %}" class="btn btn-outline-danger mx-3">Delete</a>
+            </fieldset>
+           
+          </div>
           
          
-         <a href="{% url 'job_update' item.id %}" class="btn btn-outline-primary">Edit</a>
-         <a href="{% url 'job_delete' item.id %}" class="btn btn-outline-danger mx-3">Delete</a>
+         
 
          
-        <a href="#" class="btn btn-success mx-3">Listen</a>
+        {% comment %} <a href="#" class="btn btn-success mx-3">Listen</a> {% endcomment %}
         </div>
 
 

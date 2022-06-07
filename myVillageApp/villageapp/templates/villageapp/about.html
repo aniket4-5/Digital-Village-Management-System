@@ -2,7 +2,7 @@
 {% load static %}
 {% block content%}
 <div class="my-4 p-3">
-    <h1 class="text-center  my-4 alert p-2 ">Rajiv Nagar Jhiri</h1>
+    <h1 class="text-center  my-4 alert alert-info p-2 ">Rajiv Nagar Jhiri</h1>
     
     <div class="row my-4 p-3">
         
@@ -24,6 +24,28 @@
            {% comment %} <img src="{% static 'villageapp/images/cr2.jpeg'%}" alt="" class="col-6 text-center offset-1" style="width:40rem; height:30rem"> {% endcomment %}
     </div>
 </div>
-   
+
+  
+   {% comment %} <script>
+       function initMap(){
+        //29.250908798064746, 75.66138258807315
+           var location = {lat:29.250908798064746,lng:75.66138258807315};
+                var map = new google.maps.Map(document.getElementById("map"),{zoom:4,
+                center:location});
+       }
+   </script> {% endcomment %}
 
 {% endblock content%}
+
+{% block map %}
+<div class="container">
+    <h1 class="text-center my-3 alert alert-info">Where we are .. ? </h1>
+    <div id="map" class="text-center container bg-dark p-2">
+
+        <img src="{% static 'villageapp/images/loc.png'%}" alt="" style="width:100%;">
+
+    </div>
+
+
+  </div>
+{% endblock map  %}

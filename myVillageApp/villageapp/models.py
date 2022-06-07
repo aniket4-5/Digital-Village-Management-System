@@ -39,6 +39,8 @@ class Complaints(models.Model):
     def get_absolute_url(self):
         return reverse("comp_detail", kwargs={"pk": self.pk})
 
+# JOB MODEL
+
 
 class Jobs(models.Model):
     title = models.CharField(max_length=200)
@@ -56,3 +58,24 @@ class Jobs(models.Model):
 
     def get_absolute_url(self):
         return reverse("job_detail", kwargs={"pk": self.pk})
+
+
+# REVIEW MODEL
+
+class Review(models.Model):
+
+    Name = models.CharField(max_length=100)
+
+    Desigination = models.CharField(max_length=100)
+
+    description = models.TextField()
+    image = models.ImageField(upload_to='review_pics')
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+
+    def __str__(self):
+        return self.Name
+
+    def get_absolute_url(self):
+        return reverse("comp_detail", kwargs={"pk": self.pk})

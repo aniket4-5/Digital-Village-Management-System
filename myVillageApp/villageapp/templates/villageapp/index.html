@@ -165,7 +165,20 @@
     <!-- Gallery -->
 </section>
 
-
+{% comment %} Review {% endcomment %}
 
 
 {% endblock content %}
+
+{% block map %}
+<div class="container my-3">
+    <h1 class="text-center my-3 text-primary">where we are .. ? </h1>
+    <div id="map" class="text-center container bg-dark p-2">
+
+        <img src="{% static 'villageapp/images/loc.png'%}" alt="" style="width:100%;">
+
+    </div>
+
+
+  </div>
+{% endblock map  %}

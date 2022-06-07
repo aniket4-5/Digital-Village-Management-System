@@ -33,16 +33,20 @@ class UserRegisterForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField(required=True)
+    # email = forms.EmailField(required=True)
 
     class Meta:
 
         model = User
 
-        fields = ['username', 'email']
+        fields = ['username', 'email', 'first_name', 'last_name']
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+
+
             # 'status': forms.CheckboxInput(attrs={'class': 'form-control'})
         }
 

@@ -31,7 +31,7 @@ urlpatterns = [
     path('', include('villageapp.urls')),
     path('profile/', user_views.Profile, name="user-profile"),
 
-    path('', include('django.contrib.auth.urls')),
+    # path('', include('django.contrib.auth.urls')),
     path('password_reset/', auth_views.PasswordResetView.as_view(
         template_name='users/password_rest.html'), name="pass_reset"),
     path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(
