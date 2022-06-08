@@ -1,5 +1,6 @@
-
-from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from django.shortcuts import render, get_object_or_404, redirect
+from villageapp.models import Userquery
 from villageapp.models import Notification, Complaints, Jobs, Review
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -8,12 +9,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from django.contrib.auth.models import User
 
-from .form import AddNotification, AddComplaints, AddJob
+from .form import AddNotification, AddComplaints, AddJob, UserQuery
 
 
 def home(req):
-    data = Review.objects.all()
-    return render(req, 'villageapp/index.html', {'data': data})
+    if req.method == 'POST':
+        fm = UserQuery(req.POST)
+        if fm.is_valid():
+            fm.save()
+            fm = UserQuery()
+            messages.success(
+                req, f'Sent Successfully !')
+            return redirect('village-home')
+    else:
+        fm = UserQuery()
+    return render(req, 'villageapp/index.html', {'form': fm})
 
 ### HANDLING NOTIFICATION PART ######
 
@@ -24,6 +34,13 @@ class NotificationListView(ListView):
     context_object_name = 'data'
     ordering = ['date_posted']
     paginate_by = 5
+
+    fm = UserQuery()
+
+    def get_context_data(self, **kwargs):
+        context = super(NotificationListView, self).get_context_data(**kwargs)
+        context.update({'form': self.fm})
+        return context
 
 
 class NotificationDetailView(DetailView):
@@ -81,6 +98,12 @@ class ComplaintsListView(ListView):
     context_object_name = 'data'
     ordering = ['date_posted']
     paginate_by = 5
+    fm = UserQuery()
+
+    def get_context_data(self, **kwargs):
+        context = super(ComplaintsListView, self).get_context_data(**kwargs)
+        context.update({'form': self.fm})
+        return context
 
 
 class SolvedComplaintsListView(ListView):
@@ -88,7 +111,13 @@ class SolvedComplaintsListView(ListView):
     template_name = 'villageapp/solved_complaints.html'
     context_object_name = 'data'
     ordering = ['date_posted']
-    # paginate_by = 1
+    fm = UserQuery()
+
+    def get_context_data(self, **kwargs):
+        context = super(SolvedComplaintsListView,
+                        self).get_context_data(**kwargs)
+        context.update({'form': self.fm})
+        return context
 
 
 class UnSolvedComplaintsListView(ListView):
@@ -96,6 +125,13 @@ class UnSolvedComplaintsListView(ListView):
     template_name = 'villageapp/unsolved_complaints.html'
     context_object_name = 'data'
     ordering = ['date_posted']
+    fm = UserQuery()
+
+    def get_context_data(self, **kwargs):
+        context = super(UnSolvedComplaintsListView,
+                        self).get_context_data(**kwargs)
+        context.update({'form': self.fm})
+        return context
 
     # paginate_by = 1
 
@@ -110,6 +146,14 @@ class UserComplaintsListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Complaints.objects.filter(author=user).order_by('-date_posted')
+
+    fm = UserQuery()
+
+    def get_context_data(self, **kwargs):
+        context = super(UserComplaintsListView,
+                        self).get_context_data(**kwargs)
+        context.update({'form': self.fm})
+        return context
 
 
 class ComplaintsDetailView(DetailView):
@@ -254,4 +298,14 @@ class UserJobsListView(ListView):
 
 
 def about(req):
-    return render(req, 'villageapp/about.html')
+    fm = UserQuery()
+    return render(req, 'villageapp/about.html', {'form': fm})
+
+
+def delete_query(req, id):
+    if req.method == 'POST':
+        pi = Userquery.objects.get(pk=id)
+        pi.delete()
+        messages.success(
+            req, f'Query deleted successfully')
+    return redirect('user-profile')

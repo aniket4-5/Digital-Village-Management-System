@@ -73,4 +73,55 @@
     </div>
   </div>
 
+
+  {% if user.is_superuser %}
+  <div class="container my-3 p-2">
+  {% if data %}
+    <h2 class="my-2">Queries From Peoples : </h2>
+  <table class="table">
+    <thead class="bg-dark text-warning">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Message</th>
+        <th scope="col">More</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for item  in data  %}
+
+
+      <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.subject}}</td>
+        <td> 
+          <form action="{% url 'deletequery' item.id %}" method='POST' class='d-inline'>
+            {% csrf_token %}
+            <input type ="submit" class='btn btn-danger' value="Delete"/>
+        </form>
+        
+        </td>
+      </tr>
+    
+
+
+     
+  
+  {% endfor %}
+ 
+</tbody>
+</table>
+
+  {% else %}
+  
+  <h3>No Query found </h3>
+  {% endif %}
+
+
+</div>
+
+  {% endif%}
 {% endblock content%}

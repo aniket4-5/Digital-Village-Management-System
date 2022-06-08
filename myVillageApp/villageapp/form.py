@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django import forms
-from .models import Notification, Complaints, Jobs
+from .models import Notification, Complaints, Jobs, Userquery
 
 
 class AddNotification(forms.ModelForm):
@@ -26,9 +26,6 @@ class AddComplaints(forms.ModelForm):
         }
 
 
-
-
-
 class AddJob(forms.ModelForm):
     class Meta:
         model = Jobs
@@ -43,4 +40,15 @@ class AddJob(forms.ModelForm):
             'contact_details': forms.TextInput(attrs={'class': 'form-control'}),
             # 'status': forms.CheckboxInput(attrs={'class': 'form-control'})
 
+        }
+
+
+class UserQuery(forms.ModelForm):
+    class Meta:
+        model = Userquery
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'subject': forms.Textarea(attrs={'class': 'form-control'})
         }

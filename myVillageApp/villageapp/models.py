@@ -79,3 +79,9 @@ class Review(models.Model):
 
     def get_absolute_url(self):
         return reverse("comp_detail", kwargs={"pk": self.pk})
+
+
+class Userquery(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    subject = models.TextField()

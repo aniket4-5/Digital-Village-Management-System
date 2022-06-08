@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+
+from villageapp.models import Userquery
+
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 from django.contrib.auth.decorators import login_required
@@ -40,5 +43,6 @@ def Profile(req):
     else:
         u_form = UserUpdateForm(instance=req.user)
         p_form = ProfileUpdateForm(instance=req.user.profile)
+        data = Userquery.objects.all()
 
-    return render(req, 'users/profile.html', {'u_form': u_form, 'p_form': p_form})
+    return render(req, 'users/profile.html', {'u_form': u_form, 'p_form': p_form, 'data': data})

@@ -59,7 +59,7 @@ urlpatterns = [
 
 
 
-
+    path('deletequery/<int:id>', views.delete_query, name='deletequery'),
 
 
 ]
