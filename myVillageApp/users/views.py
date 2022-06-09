@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
+from django.contrib.auth.views import LoginView
 from villageapp.models import Userquery
 
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
@@ -46,3 +47,7 @@ def Profile(req):
         data = Userquery.objects.all()
 
     return render(req, 'users/profile.html', {'u_form': u_form, 'p_form': p_form, 'data': data})
+
+
+class UserLogin(LoginView):
+    template_name: str = "login.html"

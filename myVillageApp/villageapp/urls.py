@@ -1,7 +1,7 @@
 from django.urls import path
 from villageapp import views
 
-from .views import NotificationDeleteView, NotificationListView, NotificationDetailView, NotificationCreateView, NotificationUpdateView, ComplaintsListView, ComplaintsDetailView, ComplaintsCreateView, ComplaintsUpdateView, ComplaintsDeleteView, SolvedComplaintsListView, UnSolvedComplaintsListView, UserComplaintsListView, JobsListView, JobsDetailView, JobsCreateView, JobsUpdateView, JobsDeleteView, UserJobsListView
+from .views import NotificationDeleteView, NotificationListView, NotificationDetailView, NotificationCreateView, NotificationUpdateView, ComplaintsListView, ComplaintsDetailView, ComplaintsCreateView, ComplaintsUpdateView, ComplaintsDeleteView, SolvedComplaintsListView, UnSolvedComplaintsListView, UserComplaintsListView, JobsListView, JobsDetailView, JobsCreateView, JobsUpdateView, JobsDeleteView, UserJobsListView, listenNotification
 
 
 urlpatterns = [
@@ -60,6 +60,8 @@ urlpatterns = [
 
 
     path('deletequery/<int:id>', views.delete_query, name='deletequery'),
+    path('notification/listen',
+         listenNotification, name="notif_listen"),
 
 
 ]

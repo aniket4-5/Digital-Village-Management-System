@@ -1,3 +1,6 @@
+import os
+from gtts import gTTS
+import pyttsx3
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from villageapp.models import Userquery
@@ -51,7 +54,7 @@ class NotificationDetailView(DetailView):
 
 class NotificationCreateView(LoginRequiredMixin, CreateView):
     model = Notification
-    #fields = ['title', 'content']
+    # fields = ['title', 'content']
     form_class = AddNotification
     template_name = 'villageapp/add_new_notify.html'
 
@@ -164,7 +167,7 @@ class ComplaintsDetailView(DetailView):
 
 class ComplaintsCreateView(LoginRequiredMixin, CreateView):
     model = Complaints
-    #fields = ['title', 'category', 'descritrion', 'image']
+    # fields = ['title', 'category', 'descritrion', 'image']
     form_class = AddComplaints
     template_name = 'villageapp/add_new_comp.html'
 
@@ -309,3 +312,15 @@ def delete_query(req, id):
         messages.success(
             req, f'Query deleted successfully')
     return redirect('user-profile')
+
+
+def listenNotification(req):
+
+    mytext = 'Welcome to geeksforgeeks! hii hello hello'
+
+    # Language in which you want to convert
+    language = 'en'
+    myobj = gTTS(text=mytext, lang=language, slow=False)
+    myobj.save("welcome.mp3")
+    os.system("mpg321 welcome.mp3")
+    return redirect('village-notification')

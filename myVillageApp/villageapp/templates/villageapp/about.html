@@ -2,11 +2,11 @@
 {% load static %}
 {% block content%}
 <div class="my-4 p-3">
-    <h1 class="text-center  my-4 alert alert-info p-2 ">Rajiv Nagar Jhiri</h1>
+    <h1 class="text-center  my-4 alert p-2 ">Rajiv Nagar Jhiri</h1>
     
     <div class="row my-4 p-3">
         
-           <p class="col text-center" style="font-size:1.5rem">
+           <p class="col" style="font-size:1.5rem">
   
             Hello ! ... Ram Ram ... ! this is sarpanch of Rajiv Nagar Jhiri and Gram Panchyat
                 . We welcome you to official website of Rajiv Nagar Jhiri .Rajiv Nagar is a village from Hisar district
@@ -34,7 +34,25 @@
                 center:location});
        }
    </script> {% endcomment %}
-   {% comment %} <div class="container mb-5">
+   <div class="container my-3 p-2 bg-light d-flex align-items-center justify-content-center flex-column">
+    <p class="h4 mt-3 text-primary">Paste your content in below box  which you want to listen : </p>
+    <textarea id="text" cols="50" rows="10" class="container bg-dark text-white my-5" >
+      Write your content to listen it.
+    </textarea> 
+     
+   <div class="bg-light d-flex align-items-center justify-content-center">
+     <p class="mx-2 text-info h4">Choose Language : </p>
+    <select id="voiceselection" class="btn btn-info mx-2"></select>
+    <input 
+      onclick="responsiveVoice.speak($('#text').val(),$('#voiceselection').val());" 
+      type="button" 
+      value="Read this for me" 
+      class="btn btn-success mx-2"
+    />
+   </div>
+  
+  </div>
+    <div class="container mb-5">
     <h1 class="text-center my-3">Where we are .. ? </h1>
     <div id="map" class="text-center container bg-dark">
 
@@ -43,7 +61,7 @@
     </div>
 
 
-  </div> {% endcomment %}
+  </div> 
 
  
   <!--Section: Contact v.2-->
@@ -51,7 +69,7 @@
 <section class="p-2 container my-4">
 
     <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center text-info my-4">Contact us</h2>
+    <h2 class="h1-responsive font-weight-bold text-center text-primary my-4 ">Contact us</h2>
     <!--Section description-->
     <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within a matter of hours to help you.</p>
   

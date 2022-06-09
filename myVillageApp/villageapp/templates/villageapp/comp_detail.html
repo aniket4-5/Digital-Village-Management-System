@@ -50,5 +50,22 @@
   
     
 </div>
+<div class="container my-3 p-2 bg-light d-flex align-items-center justify-content-center flex-column">
+  <p class="h4 mt-3 text-primary">Paste your content in below box  which you want to listen : </p>
+  <textarea id="text" cols="50" rows="10" class="container bg-dark text-white my-5" >
+    Write your content to listen it.
+  </textarea> 
+   
+ <div class="bg-light d-flex align-items-center justify-content-center">
+   <p class="mx-2 text-info h4">Choose Language : </p>
+  <select id="voiceselection" class="btn btn-info mx-2"></select>
+  <input 
+    onclick="responsiveVoice.speak($('#text').val(),$('#voiceselection').val());" 
+    type="button" 
+    value="Read this for me" 
+    class="btn btn-success mx-2"
+  />
+ </div>
 
+</div>
 {% endblock content%}

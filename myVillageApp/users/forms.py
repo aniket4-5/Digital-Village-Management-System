@@ -56,3 +56,16 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+
+
+class UserLogin(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['password', 'username']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'})
+
+
+            # 'status': forms.CheckboxInput(attrs={'class': 'form-control'})
+        }

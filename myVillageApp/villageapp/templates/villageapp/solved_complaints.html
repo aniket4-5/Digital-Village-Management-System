@@ -1,10 +1,10 @@
 {% extends 'villageapp/base.html' %}
 {% load static %}
 {% block content%}
-<header class="container-fluid my-3 h3 text-center d-flex align-items-center justify-content-center">
+{% comment %} <header class="container-fluid my-3 h3 text-center d-flex align-items-center justify-content-center">
     <img src="{% static 'villageapp/images/logo.png' %}" style="width: 5rem; height: 5rem;" class="mx-5">
     <p>Grievance Management System</p>
-  </header>
+  </header> {% endcomment %}
   
   <section id="bannerComp" style="background-image: url('{% static 'villageapp/images/bg1.png' %}');background-size: cover;
   background-repeat: no-repeat;
@@ -56,7 +56,8 @@
       <a href="{% url 'village-complaints' %}" class="btn btn-outline-primary col-2 mx-2">All Complaints </a>
       <a href="{% url 'solved_complaints' %}" class="btn btn-primary col-2 mx-2">Solved Complaints </a>
       <a href="{% url 'unsolved_complaints' %}" class="btn btn-outline-primary col-2 mx-2">Pending Complaints </a>
-      <a href="{% url 'user_comp' user.username %}" class="btn btn-outline-primary col-2 mx-2">My Complaints </a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'user_comp' user.username %}" class="btn btn-outline-primary col-2 mx-2">My Complaints </a>{% endif %}
     </div>
 
   
